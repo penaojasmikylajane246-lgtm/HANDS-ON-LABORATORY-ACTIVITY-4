@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta name="description" content="A local-first guide to the islands, culture, and community experiences of Marinduque, Philippines.">
+  <title>Marinduque, Slowly | A Local Island Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f0e7;
+      --ink: #183d37;
+      --muted: #69766c;
+      --line: #d8d8c9;
+      --green: #176a52;
+      --orange: #e36b45;
+      --yellow: #e9c85c;
+      --white: #fffdf7;
+      font-family: "DM Sans", sans-serif;
+      font-synthesis: none;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .topbar { height: 72px; padding: 0 6.2vw; position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; gap: 10px; align-items: center; text-decoration: none; font-weight: 700; letter-spacing: 0; }
+    .brand-mark { width: 28px; height: 28px; display: grid; place-items: center; color: var(--white); background: var(--green); border-radius: 50%; font-size: 14px; }
+    .nav { display: flex; align-items: center; gap: 30px; font-size: 13px; }
+    .nav-links { display: flex; align-items: center; gap: 26px; }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: var(--green); }
+    .nav .nav-cta { padding: 10px 15px; border: 1px solid var(--ink); border-radius: 2px; }
+    .menu-toggle { display: none; }
+    .hero { min-height: 540px; margin: 20px 2.2vw 0; position: relative; overflow: hidden; display: flex; align-items: flex-end; background: #5c8276; color: white; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 39, 35, .72) 0%, rgba(8, 39, 35, .31) 50%, rgba(8, 39, 35, .02) 100%), url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2200&q=85") center 54% / cover; }
+    .hero-copy { position: relative; max-width: 780px; padding: 65px 7vw 72px; animation: rise .7s ease-out both; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 19px; font-size: 11px; font-weight: 700; letter-spacing: 1.7px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--yellow); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 500; letter-spacing: 0; }
+    h1 { max-width: 700px; margin-bottom: 20px; font-size: clamp(54px, 7.5vw, 102px); line-height: .98; }
+    h1 em { color: #f0d36e; font-style: normal; }
+    .hero-copy > p:not(.eyebrow) { max-width: 430px; margin-bottom: 30px; color: rgba(255,255,255,.89); font-size: 16px; line-height: 1.7; }
+    .hero-link { display: inline-flex; align-items: center; gap: 15px; padding-bottom: 7px; border-bottom: 1px solid rgba(255,255,255,.65); text-decoration: none; font-size: 13px; font-weight: 600; }
+    .hero-link span { color: var(--yellow); font-size: 18px; }
+    .hero-note { position: absolute; right: 28px; bottom: 25px; font-size: 10px; letter-spacing: .6px; color: rgba(255,255,255,.83); }
+    .intro { display: grid; grid-template-columns: 1fr 1.1fr; gap: 10vw; align-items: end; padding: 85px 10vw 72px; }
+    .intro h2 { max-width: 460px; margin-bottom: 0; font-size: clamp(36px, 4.2vw, 54px); line-height: 1.08; }
+    .intro h2 span { color: var(--orange); }
+    .intro-copy { max-width: 490px; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .intro-copy p { margin-bottom: 15px; }
+    .local-note { color: var(--ink); font-size: 12px; font-weight: 600; }
+    .explore { padding: 62px 6.2vw 82px; background: #e8e8dc; }
+    .explore-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 27px; }
+    .section-kicker { margin-bottom: 8px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; }
+    .explore h2, .community h2 { margin-bottom: 0; font-size: clamp(36px, 4vw, 52px); line-height: 1.04; }
+    .search { width: min(310px, 100%); position: relative; }
+    .search span { position: absolute; top: 50%; left: 14px; transform: translateY(-50%); color: var(--muted); font-size: 18px; }
+    .search input { width: 100%; height: 46px; padding: 0 14px 0 40px; outline: none; border: 1px solid #c5cbbb; border-radius: 2px; background: var(--white); color: var(--ink); font-size: 13px; }
+    .search input:focus { border-color: var(--green); box-shadow: 0 0 0 2px rgba(23,106,82,.12); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 29px; }
+    .filter { min-height: 36px; padding: 0 14px; border: 1px solid #c7cbbc; border-radius: 2px; background: transparent; color: var(--ink); cursor: pointer; font-size: 12px; }
+    .filter:hover, .filter[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: white; }
+    .results-line { display: flex; justify-content: space-between; margin: -10px 0 18px; color: var(--muted); font-size: 11px; }
+    .places { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .place { min-width: 0; background: var(--white); animation: rise .45s ease-out both; }
+    .place-image { height: 205px; position: relative; overflow: hidden; background: #a8b9a7; }
+    .place-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+    .place:hover .place-image img { transform: scale(1.04); }
+    .place-type { position: absolute; top: 13px; left: 13px; padding: 7px 9px; background: var(--white); color: var(--ink); font-size: 9px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; }
+    .place-body { padding: 18px 19px 16px; }
+    .place-location { margin-bottom: 8px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .65px; text-transform: uppercase; }
+    .place h3 { margin-bottom: 8px; font-size: 24px; line-height: 1.05; }
+    .place-body > p:not(.place-location) { min-height: 42px; margin-bottom: 15px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .place-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid #e7e6dc; }
+    .place-tag { color: var(--muted); font-size: 10px; }
+    .map-link { color: var(--green); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .map-link:hover { text-decoration: underline; }
+    .empty-state { grid-column: 1 / -1; padding: 46px 20px; text-align: center; color: var(--muted); }
+    .empty-state strong { display: block; margin-bottom: 7px; color: var(--ink); font-family: "Fraunces", Georgia, serif; font-size: 24px; font-weight: 500; }
+    .guides { padding: 78px 6.2vw 84px; }
+    .guides-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 28px; }
+    .guides h2 { max-width: 520px; margin-bottom: 0; font-size: clamp(36px, 4vw, 52px); line-height: 1.04; }
+    .guides-intro { max-width: 390px; margin-bottom: 2px; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .guide-card { min-width: 0; padding: 23px 21px 20px; border-top: 3px solid var(--green); background: var(--white); }
+    .guide-number { margin-bottom: 14px; color: var(--orange); font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+    .guide-card h3 { margin-bottom: 8px; font-size: 25px; line-height: 1.05; }
+    .guide-summary { min-height: 42px; margin-bottom: 18px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .guide-route { margin-bottom: 17px; padding: 13px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--ink); font-size: 11px; font-weight: 600; line-height: 1.8; }
+    .guide-route span { color: var(--green); }
+    .guide-note { min-height: 57px; margin-bottom: 16px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .guide-map { display: inline-flex; min-height: 38px; align-items: center; padding: 0 12px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-size: 11px; font-weight: 700; }
+    .guide-map:hover { background: var(--ink); color: white; }
+    .community { display: grid; grid-template-columns: 1.05fr .95fr; gap: 8vw; padding: 87px 10vw; background: var(--ink); color: var(--white); }
+    .community h2 { max-width: 440px; margin: 14px 0 18px; }
+    .community .section-kicker { color: var(--yellow); }
+    .community-copy { max-width: 460px; color: rgba(255,255,255,.74); font-size: 13px; line-height: 1.85; }
+    .community-list { border-top: 1px solid rgba(255,255,255,.25); }
+    .community-item { display: flex; justify-content: space-between; gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.25); }
+    .community-item h3 { margin-bottom: 6px; font-size: 20px; }
+    .community-item p { max-width: 320px; margin-bottom: 0; color: rgba(255,255,255,.66); font-size: 11px; line-height: 1.65; }
+    .community-item > span { padding-top: 3px; color: var(--yellow); font-size: 10px; white-space: nowrap; }
+    .updates-note { margin: 10px 0 0; color: rgba(255,255,255,.55); font-size: 10px; line-height: 1.7; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px 6.2vw; color: var(--muted); font-size: 10px; }
+    footer a { color: var(--ink); text-decoration: none; }
+    @keyframes rise { from { opacity: 0; transform: translateY(13px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+    @media (max-width: 800px) {
+      .topbar { padding: 0 5vw; }
+      .nav { gap: 16px; }
+      .nav-links { gap: 16px; }
+      .hero { min-height: 490px; margin: 12px 12px 0; }
+      .hero-copy { padding: 56px 7vw 65px; }
+      .intro { gap: 35px; padding: 68px 8vw 58px; }
+      .explore { padding: 54px 5vw 65px; }
+      .places { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .guides { padding: 62px 5vw 68px; }
+      .guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .community { gap: 36px; padding: 68px 8vw; }
+    }
+    @media (max-width: 560px) {
+      .topbar { height: 62px; }
+      .nav { position: static; }
+      .menu-toggle { display: inline-flex; min-height: 40px; align-items: center; gap: 8px; padding: 0 10px; border: 1px solid var(--ink); border-radius: 2px; background: transparent; color: var(--ink); cursor: pointer; font-size: 12px; }
+      .menu-icon { width: 15px; height: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+      .menu-icon::before, .menu-icon::after, .menu-icon i { height: 1px; display: block; background: currentColor; content: ""; }
+      .nav-links { display: none; position: absolute; top: 61px; right: 0; left: 0; align-items: stretch; flex-direction: column; gap: 0; padding: 8px 5vw 14px; border-bottom: 1px solid var(--line); background: var(--paper); box-shadow: 0 10px 16px rgba(24,61,55,.08); }
+      .nav-links.is-open { display: flex; }
+      .nav-links a { padding: 12px 4px; border-bottom: 1px solid var(--line); }
+      .nav .nav-cta { display: none; }
+      .hero { min-height: 505px; }
+      .hero::before { background-position: 58% center; }
+      .hero-copy { padding: 45px 7vw 60px; }
+      h1 { font-size: 60px; }
+      .hero-copy > p:not(.eyebrow) { font-size: 14px; }
+      .hero-note { right: 12px; bottom: 12px; font-size: 9px; }
+      .intro { grid-template-columns: 1fr; gap: 22px; padding: 58px 8vw 52px; }
+      .explore-head { align-items: stretch; flex-direction: column; }
+      .search { width: 100%; }
+      .places { grid-template-columns: 1fr; gap: 14px; }
+      .place-image { height: 220px; }
+      .place-body > p:not(.place-location) { min-height: auto; }
+      .guides { padding: 56px 5vw 62px; }
+      .guides-head { align-items: stretch; flex-direction: column; gap: 17px; }
+      .guide-grid { grid-template-columns: 1fr; gap: 12px; }
+      .guide-summary, .guide-note { min-height: 0; }
+      .community { grid-template-columns: 1fr; padding: 58px 8vw; }
+      footer { flex-direction: column; padding: 20px 6vw; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Marinduque, Slowly home"><span class="brand-mark" aria-hidden="true">M</span><span>Marinduque, Slowly</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><span class="menu-icon" aria-hidden="true"><i></i></span>Menu</button>
+      <div class="nav-links" id="primary-links">
+        <a href="#explore">Places</a>
+        <a href="#guides">Travel guides</a>
+        <a href="#community">Activity updates</a>
+        <a class="nav-cta" href="#guides">Plan a route</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Mimaropa · Philippines</p>
+        <h1 id="hero-title">An island<br>with <em>a soul.</em></h1>
+        <p>Find quiet coves, living traditions, and the people who make Marinduque feel like nowhere else.</p>
+        <a class="hero-link" href="#explore">Start exploring <span aria-hidden="true">↘</span></a>
+      </div>
+      <span class="hero-note">Marinduque Island · Philippines</span>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title">Take the long way.<br><span>Meet the real island.</span></h2>
+      <div class="intro-copy">
+        <p>Between mountain trails and the sea, Marinduque moves to its own rhythm. This little guide brings together memorable places and ways to experience local life, with room to wander at your own pace.</p>
+        <p class="local-note">A good visit starts with a hello. Ask local hosts about access, boat schedules, and what is happening today.</p>
+      </div>
+    </section>
+
+    <section class="explore" id="explore" aria-labelledby="explore-title">
+      <div class="explore-head">
+        <div><p class="section-kicker">A few good places to begin</p><h2 id="explore-title">Find your kind of day</h2></div>
+        <label class="search"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search places or towns" aria-label="Search places or towns"></label>
+      </div>
+      <div class="filters" role="group" aria-label="Filter places">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">Everything</button>
+        <button class="filter" type="button" data-filter="nature" aria-pressed="false">Nature & beaches</button>
+        <button class="filter" type="button" data-filter="culture" aria-pressed="false">Culture & heritage</button>
+        <button class="filter" type="button" data-filter="community" aria-pressed="false">Community experiences</button>
+      </div>
+      <div class="results-line"><span id="results-count" aria-live="polite">6 places and experiences</span><span>Across Marinduque</span></div>
+      <div class="places" id="places-list">
+        <article class="place" data-category="nature" data-search="poctoy white beach torrijos sand swimming coast">
+          <div class="place-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Turquoise water rolling onto a sandy beach" loading="lazy"><span class="place-type">Beach day</span></div>
+          <div class="place-body"><p class="place-location">Torrijos · South coast</p><h3>Poctoy White Beach</h3><p>A favorite stretch of pale sand and clear water, with Mt. Malindig rising in the distance.</p><div class="place-bottom"><span class="place-tag">Sea · Sunset</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Poctoy+White+Beach+Torrijos+Marinduque" target="_blank" rel="noreferrer">Open map ↗</a></div></div>
+        </article>
+        <article class="place" data-category="nature" data-search="tres reyes islands gasan island hopping beach boat">
+          <div class="place-image"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=80" alt="Small tropical island surrounded by calm blue sea" loading="lazy"><span class="place-type">Island escape</span></div>
+          <div class="place-body"><p class="place-location">Gasan · Offshore</p><h3>Tres Reyes Islands</h3><p>Three small islands off the coast. Ask Gasan boat operators about sea conditions and day trips.</p><div class="place-bottom"><span class="place-tag">Boats · Snorkeling</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Tres+Reyes+Islands+Gasan+Marinduque" target="_blank" rel="noreferrer">Open map ↗</a></div></div>
+        </article>
+        <article class="place" data-category="nature" data-search="maniwaya island santa cruz beach sandbar nature">
+          <div class="place-image"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=900&q=80" alt="Island shoreline with palms beside bright blue water" loading="lazy"><span class="place-type">Island escape</span></div>
+          <div class="place-body"><p class="place-location">Santa Cruz · Northeast</p><h3>Maniwaya Island</h3><p>Beach time, island views, and nearby sandbars make this a lovely change of pace from the mainland.</p><div class="place-bottom"><span class="place-tag">Sea · Sandbar</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Maniwaya+Island+Santa+Cruz+Marinduque" target="_blank" rel="noreferrer">Open map ↗</a></div></div>
+        </article>
+        <article class="place" data-category="culture" data-search="boac cathedral immaculada concepcion heritage church history boac">
+          <div class="place-image"><img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80" alt="Historic stone church with a detailed facade" loading="lazy"><span class="place-type">Heritage</span></div>
+          <div class="place-body"><p class="place-location">Boac · Town center</p><h3>Boac Cathedral</h3><p>Visit the Immaculada Concepcion Cathedral and wander the streets of Marinduque's provincial capital.</p><div class="place-bottom"><span class="place-tag">Architecture · History</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Boac+Cathedral+Marinduque" target="_blank" rel="noreferrer">Open map ↗</a></div></div>
+        </article>
+        <article class="place" data-category="culture" data-search="moriones festival morion masks holy week boac mogpog culture">
+          <div class="place-image"><img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=900&q=80" alt="Colorful hand-painted festival mask" loading="lazy"><span class="place-type">Living tradition</span></div>
+          <div class="place-body"><p class="place-location">Across the island · Holy Week</p><h3>Moriones Festival</h3><p>See the island's striking Morion masks and processions. Dates and activities follow the Holy Week calendar.</p><div class="place-bottom"><span class="place-tag">Festival · Craft</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Moriones+Festival+Marinduque" target="_blank" rel="noreferrer">Open map ↗</a></div></div>
+        </article>
+        <article class="place" data-category="community" data-search="putong ceremony welcome song local community music hospitality">
+          <div class="place-image"><img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80" alt="Community gathering and live music" loading="lazy"><span class="place-type">Meet the community</span></div>
+          <div class="place-body"><p class="place-location">By local invitation</p><h3>Experience a Putong</h3><p>Learn about Marinduque's traditional welcome song and ceremony by joining through a local host.</p><div class="place-bottom"><span class="place-tag">Music · Welcome</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Marinduque+cultural+experiences" target="_blank" rel="noreferrer">Find local hosts ↗</a></div></div>
+        </article>
+        <div class="empty-state" id="empty-state" hidden><strong>No places found just yet.</strong>Try another search or choose a different filter.</div>
+      </div>
+    </section>
+
+    <section class="guides" id="guides" aria-labelledby="guides-title">
+      <div class="guides-head">
+        <div><p class="section-kicker">Simple routes, local pace</p><h2 id="guides-title">A little help getting there</h2></div>
+        <p class="guides-intro">Use these starting points to plan your day. Map links cover road or town directions; island boat legs need to be arranged with local operators.</p>
+      </div>
+      <div class="guide-grid">
+        <article class="guide-card">
+          <p class="guide-number">01 · HERITAGE WALK</p>
+          <h3>A morning in Boac</h3>
+          <p class="guide-summary">A relaxed introduction to the capital's historic center.</p>
+          <p class="guide-route"><span>Start</span> Boac Cathedral<br><span>Then</span> Walk the town center and visit the public market</p>
+          <p class="guide-note">The cathedral is in central Boac. Check local opening hours and be respectful during services.</p>
+          <a class="guide-map" href="https://www.google.com/maps/dir/?api=1&origin=Boac+Cathedral,+Marinduque&destination=Boac+Public+Market,+Marinduque&travelmode=walking" target="_blank" rel="noreferrer">Walking directions ↗</a>
+        </article>
+        <article class="guide-card">
+          <p class="guide-number">02 · SEA DAY</p>
+          <h3>Gasan to Tres Reyes</h3>
+          <p class="guide-summary">Set off from Gasan for an island visit when sea conditions allow.</p>
+          <p class="guide-route"><span>Road</span> Boac town to Gasan Port<br><span>By boat</span> Ask a local operator about island trips</p>
+          <p class="guide-note">The map shows the road leg only. Confirm boat schedules, fees, weather, and return timing in Gasan.</p>
+          <a class="guide-map" href="https://www.google.com/maps/dir/?api=1&origin=Boac,+Marinduque&destination=Gasan+Port,+Marinduque&travelmode=driving" target="_blank" rel="noreferrer">Directions to Gasan ↗</a>
+        </article>
+        <article class="guide-card">
+          <p class="guide-number">03 · BEACH DAY</p>
+          <h3>Santa Cruz to Maniwaya</h3>
+          <p class="guide-summary">Pair a mainland transfer with a beach day on Maniwaya Island.</p>
+          <p class="guide-route"><span>Road</span> Santa Cruz town to Buyabod Port<br><span>By boat</span> Coordinate your crossing locally</p>
+          <p class="guide-note">Boat crossings are weather-dependent. Ask about departures and return trips before leaving the mainland.</p>
+          <a class="guide-map" href="https://www.google.com/maps/dir/?api=1&origin=Santa+Cruz,+Marinduque&destination=Buyabod+Port,+Marinduque&travelmode=driving" target="_blank" rel="noreferrer">Directions to Buyabod ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="community" id="community" aria-labelledby="community-title">
+      <div>
+        <p class="section-kicker">Community board · Planning notes</p>
+        <h2 id="community-title">The best stories happen together.</h2>
+        <p class="community-copy">Make space for the people, not just the postcard. These evergreen notes point you toward local experiences; ask your host or local tourism office what is actually happening during your visit.</p>
+      </div>
+      <div class="community-list">
+        <article class="community-item"><div><h3>Moriones season</h3><p>Look for Holy Week processions and Morion traditions across the island; confirm town schedules before traveling.</p></div><span>SEASONAL</span></article>
+        <article class="community-item"><div><h3>Island boat trips</h3><p>Ask Gasan or Buyabod operators about departures, sea conditions, group size, and return arrangements.</p></div><span>CHECK LOCALLY</span></article>
+        <article class="community-item"><div><h3>Putong welcomes</h3><p>This traditional welcome is best experienced by invitation. Ask a local host about respectful ways to participate.</p></div><span>BY ARRANGEMENT</span></article>
+        <p class="updates-note">Planning information only · This is not a live event calendar. Dates, availability, and schedules can change; verify locally before setting out.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>Marinduque, Slowly · A small guide to a special island.</span><a href="#top">Back to top ↑</a><span>Check local conditions and opening details before you go.</span></footer>
+
+  <script>
+    const searchInput = document.querySelector("#search-input");
+    const filters = [...document.querySelectorAll(".filter")];
+    const places = [...document.querySelectorAll(".place")];
+    const emptyState = document.querySelector("#empty-state");
+    const resultsCount = document.querySelector("#results-count");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector("#primary-links");
+    let activeFilter = "all";
+
+    menuToggle.addEventListener("click", () => {
+      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+      navLinks.classList.toggle("is-open", !isExpanded);
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        navLinks.classList.remove("is-open");
+      }
+    });
+
+    function updatePlaces() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+      places.forEach((place) => {
+        const matchesCategory = activeFilter === "all" || place.dataset.category === activeFilter;
+        const matchesSearch = !query || place.dataset.search.toLowerCase().includes(query) || place.dataset.category.toLowerCase().includes(query) || place.textContent.toLowerCase().includes(query);
+        const visible = matchesCategory && matchesSearch;
+        place.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+      emptyState.hidden = visibleCount > 0;
+      resultsCount.textContent = `${visibleCount} ${visibleCount === 1 ? "place or experience" : "places and experiences"}`;
+    }
+
+    filters.forEach((button) => button.addEventListener("click", () => {
+      activeFilter = button.dataset.filter;
+      filters.forEach((filter) => filter.setAttribute("aria-pressed", String(filter === button)));
+      updatePlaces();
+    }));
+    searchInput.addEventListener("input", updatePlaces);
+  </script>
+</body>
+</html>
